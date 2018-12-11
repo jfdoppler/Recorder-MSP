@@ -1,0 +1,109 @@
+[TraceHelper]
+Enabled=0
+ShowSource=1
+[Stack]
+FillEnabled=0
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnLogOnly=1
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[DebugChecksum]
+Checksum=1906682127
+[CodeCoverage]
+Enabled=_ 0
+[CallStack]
+ShowArgs=0
+[Disassembly]
+MixedMode=1
+[EEM State Storage]
+Buffer=BAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Sequencer]
+Buffer=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Cycle Counter 0]
+Counter0=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[EEM Cycle Counter 1]
+Counter1=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+[DriverProfiling]
+Enabled=0
+Mode=1
+Graph=0
+Symbiont=0
+Exclusions=
+[CallStackLog]
+Enabled=0
+[CallStackStripe]
+ShowTiming=1
+[InterruptLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+SumSortOrder=0
+[DataLog]
+LogEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+SumEnabled=0
+ShowTimeSum=1
+[Breakpoints2]
+Bp0=_ 1 "STD_CODE2" "{$PROJ_DIR$\main.c}.198.3" 0 0 1 "" 0 ""
+Bp1=_ 0 "STD_CODE2" "{$PROJ_DIR$\main.c}.79.1" 0 0 1 "" 0 ""
+Count=2
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[Trace1]
+Enabled=0
+ShowSource=1
+[Simulator]
+Freq=1000000
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$\..\..\..\Firmware Audio v0.4}.67.3" 0 0 0 0 "" 0 ""
+Bp1=_ "STD_CODE" "{$PROJ_DIR$\main.c}.136.3" 1 0 0 0 "" 0 ""
+Bp2=_ "STD_CODE" "{$PROJ_DIR$\main.c}.144.3" 1 0 0 0 "" 0 ""
+Bp3=_ "STD_CODE" "{$PROJ_DIR$\main.c}.152.5" 1 0 0 0 "" 0 ""
+Bp4=_ "STD_CODE" "{$PROJ_DIR$\main.c}.96.9" 1 0 0 0 "" 0 ""
+Bp5=_ "STD_CODE" "{$PROJ_DIR$\main.c}.214.5" 1 0 0 0 "" 0 ""
+Bp6=_ "STD_CODE" "{$PROJ_DIR$\main.c}.142.3" 1 0 0 0 "" 0 ""
+Count=7
+[FET]
+Clock mode=39
+Secure Password=
+Extended Clock Control Enable=1
+Advanced Extended Clock Control=0
+Emulation mode=0
+Free running=0
+Shutting Down=3
+[Memory Dump]
+Start address=
+Lenghth=
+Address info=0
+Format=0
+Dump registers=0
+PC=0
+SP=0
+SR=0
+all registers=0
+File name=
+[Aliases]
+A0=_ "C:\Users\Juan\Desktop\MicroSD\Firmware Audio v0\ejemplo1\main.c" "C:\Users\Juan\Documents\MicroSD\Firmware Audio v0\ejemplo1\main.c"
+Count=1
+SuppressDialog=0

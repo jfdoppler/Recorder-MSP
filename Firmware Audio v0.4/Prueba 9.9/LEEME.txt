@@ -1,0 +1,2 @@
+Entrada = 10Hz +-10mV (sale atenuada por los filtros pasa alto)
+y Sonido. Hay errores feos regularmente
