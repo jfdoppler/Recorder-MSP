@@ -1,0 +1,228 @@
+/* Modificado usando el tuto de Ian Lesnet
+En mmc.c/h todo lo que dice "Agregado" es sacado de los archivos del firmware 
+record.
+Esta todo para que funcione (por ej. hay dos funciones para mandar comandos:
+sendCmd y send_cmd (la primera es la del tuto, la segunda de Ian)
+
+*/
+#include "io430.h"
+#include "intrinsics.h"
+#include <lcd2x16.h>
+#include <bsp.h>
+#include <mmc.h>
+
+char accion = 0;
+
+char sdstatus;
+unsigned char status = 1;
+unsigned int timeout = 0;
+unsigned int i = 0;
+unsigned int bRead;
+unsigned long j=0;
+unsigned char titulo[16] = " microembebidos ";
+unsigned char temp[512] = {0};
+
+struct audioStr {
+  unsigned char In; //stores one 8 bit audio output sample
+  unsigned char lsb; //guarda los 2 bits perdidos (10bit ADC -> 8bit audio)
+  unsigned char Rec; //audio record or play?
+  unsigned char bufferBytes;  //number of audio in or out bytes available
+  unsigned char wdtCount; //used to skip every other WDT interrupt
+  unsigned char Button; //was the button pressed?
+} audio;
+
+struct flashstr {
+  unsigned int currentByte; //byte counter for current 512byte sector
+  unsigned long currentSector; //current sector
+  unsigned long totalBytes; //reading byte number....
+  unsigned long lastSector; //last sector to read
+  unsigned long cardSize; //size of the SD card (to tell when it's full
+} flashDisk;
+  
+unsigned char sdWrite(unsigned char data);
+
+//this function writes one byte to the SD card
+//it takes care of switching to the next 512 byte sector
+//the first sector to write to must already be mounted
+//the flaskdisk variables must be setup for the location to start reading
+unsigned char sdWrite(unsigned char data)
+{
+  unsigned char status;
+    if(flashDisk.currentByte==512)
+    {                               //we have reached the end of the current sector
+      mmcWriteUnmount(flashDisk.currentByte);  //close the sector
+      flashDisk.currentByte=0;      //reset byte counter to 0
+ 
+      if(flashDisk.currentSector==150*2) //record 150*2 sectors (~10 seconds) of audio
+      //if(flashDisk.totalBytes<flashDisk.cardSize) //this finds the end of the disk, for later....
+      {                             //we have reached the end of the file/disk, return EOF code (99)
+        return 99;                  //reached the end, out off space....
+      }
+  
+      //we have NOT reached the end of the file
+      flashDisk.currentSector++;    //go to the next sector
+      status=mmcWriteMount(flashDisk.currentSector*512);//mount by byte, not the sector number....
+    }
+    
+    mmcWriteByte(data);             //write audio sample to the sector
+    flashDisk.currentByte++;        //increment the byte counter
+    return status;                  //no errors....
+}
+
+void Rec(){
+    IE1 &= (~WDTIE);           // disable WDT interrupt, used to trigger recordings
+    P1OUT_bit.P0 = 1;                            // P1.0 = ON
+
+    //NEED TO UNMOUNT THE LAST SECTOR!!!!!
+    mmcReadUnmount(flashDisk.currentByte);  //close the sector
+    
+    //------write audio to SD card....
+    //setup the write
+    audio.bufferBytes=0;        //flush any old values from the buffer
+    audio.Rec=1;                //enable recording code in WDT routine.....
+    flashDisk.currentByte=0;    //reading byte 0 of the current 512 byte sector
+    flashDisk.currentSector=0; //we start with sector 1 so we can store meta data in sector 0....
+    
+    status=mmcWriteMount(flashDisk.currentSector); //mount the first sector so it is ready to write, 
+                                                  //now all writes go through sdWrite()
+                                                  // Agregue el +1 porque no estaba cambiando de sector// Lo saque y cambia(?)
+
+    IE1_bit.WDTIE = 1;              // Enable WDT interrupt, used to trigger output sample updates
+    
+    //configure the port interrupt to disable the recording. 
+    //do this last so nothing wierd happens
+    P1IES &= ~0x02;  // lo/hi edge to stop recording
+    P1IFG &= ~0x02;                           // P1.4 IFG cleared 
+}
+
+int main( void )
+{
+  // Stop watchdog timer to prevent time out reset
+  //WDTCTL = WDTPW + WDTHOLD;
+  //SAQUE LA LINEA ANTERIOR PORQUE NO ARRANCABA (QUEDABA EN HOLD?)
+  WDTCTL = WDT_MDLY_0_5;    // Set Watchdog Timer interval to 512
+  // Inicialización del MSP430F2272
+  P1DIR_bit.P0 = 1;//salida en P1.0 para ver cuando resetea el timer
+  P1OUT_bit.P0 = 0;
+  MainClockInit();
+  SMCLKInit();
+  LcdInit();
+  LcdStringXY(titulo,16,1,1);
+  __delay_cycles(100000);
+  __delay_cycles(100000);
+  //Initialization of the MMC/SD-card
+  // Esto puede causar errores? Venia del tuto anterior
+  while (status != 0){
+    status = disk_initialize();
+    timeout++;
+    // Try 150 times till error
+    if (timeout == 150){
+      LcdStringXY("error init SD/MM",16,1,2);
+      __low_power_mode_0();
+    }
+  }
+  /*
+    //setup the SD card
+  mmc_GoIdle();                   //set MMC in Idle mode, 
+                                  //make sure that it isn't still initialized from 
+                                  //a previous run that was reset
+  MMC_initSPI();                  //setup the SPI port for the SD card
+  mmc_GoIdle();                   //set MMC in Idle mode again, just to be sure that it's ready
+  sdstatus=initMMC();             //initalize the SD card into SPI mode...
+  flashDisk.cardSize =  MMC_ReadCardSize(); //read the SD card size
+  */
+  //setup the ADC10 on the MSP430F2012
+  ADC10CTL0 &= ~ENC;				// Disable Conversion
+
+  ADC10CTL0 = SREF_0 + ADC10SHT_2 + ADC10ON + ADC10IE; // ADC10ON, interrupt enabled
+  // No hacer quilombo con la referencia (SREF) o flashea
+  ADC10AE0 |= BIT2;                           // PA.2 ADC option select
+  ADC10CTL1 = CONSEQ_0 + INCH_2;                         // input A2
+
+  __delay_cycles(100000);
+  //Button on P1.1
+  P1DIR &= ~(0x02); //input direction
+  P1REN |= 0x02; //enable the pullup resistor
+  P1OUT |= 0x02;  //set output to high for pullup 
+  P1IE |= 0x02;   // interrupt enabled
+  P1IES |= 0x02;  // Hi/lo edge
+  P1IFG &= ~0x02;  // interrupt flag cleared
+  LcdStringXY("SD/MMC card OK! ",16,1,2);
+    
+  
+  //_BIS_SR(GIE);                 // enable global interrupt
+  __enable_interrupt();
+  //__bis_SR_register(GIE);
+  int aa = 1;
+  while(1){
+    if(aa){
+      aa=0;
+      Rec();
+
+    }
+    
+    if(audio.Rec){
+      //status = disk_write_low(titulo,sector);
+      //sector++;
+      //P1OUT_bit.P4 ^= 1;
+      if(audio.bufferBytes>0){   //There is a byte to be written in the record buffer
+      status=sdWrite(audio.In);//write the byte, get the result code in status
+      status=sdWrite(audio.lsb);//escribo el segundo byte, con los digitos menos significativos
+                                // APARENTEMENTE LLEGA A HACER LAS 2 TRANSMISIONES ANTES DEL SIGUIENTE
+                                // INTERRUP DEL WDT -> NO PIERDO FRECUENCIA DE ADQUISICION!!!
+                               //status=99 when the card is full (or reaches a predetermined limit)
+      audio.bufferBytes--;    //subtract one from the buffer counter
+      }
+    }
+    else{
+      if(audio.Button){//act on the button
+        audio.Button=0;
+        Rec(); // Si activa el boton -> graba
+        // Esto tengo que reemplazarlo por el trigger: si trigg > umbral -> Rec
+        // En Rec() setea audio.Rec = 1
+      }
+    }
+  }
+}
+
+// Watchdog Timer interrupt service routine
+//this code runs every time the WDT interrupts (16000 times per second)
+//the rule: keep it short and sweet
+#pragma vector=WDT_VECTOR
+__interrupt void watchdog_timer(void)
+{
+  P1OUT_bit.P0 ^= 1;
+  if(audio.wdtCount==1)           //we only need to do this every other time
+                                  // Si saco esto puedo ganar velocidad?
+  {
+    if(audio.Rec)                 //if in record mode...
+    {                             //trigger ADC to get audio sample for recording
+      ADC10CTL0 |= ENC + ADC10SC; //Set bit to start conversion:F2012
+                                  //interrupt will trigger code below....
+      while (ADC10CTL1 & BUSY);// espero a que se desocupe
+    }
+  }
+  else
+  {                               //skip this cycle
+    audio.wdtCount++;             
+  }  
+}
+
+//ADC10 interrupt service routine
+//when the ADC10 completes an audio sample measurement, this code runs
+#pragma vector=ADC10_VECTOR
+__interrupt void ADC10_ISR(void)
+{
+  while (ADC10CTL1 & BUSY);// espero a que se desocupe
+  audio.In=(ADC10MEM>>2);       //convert audio to 8 bit sample....  >> binary shift -> mueve los bits 2 lugares
+                                // ACA VIEJO LA CONVERTI A 8 BITS!!!!!!!!!!!!!!!!!
+  audio.bufferBytes++;          //new byte in the buffer
+  audio.lsb=ADC10MEM & 0x03;
+}
+
+// Port 1 interrupt service routine
+#pragma vector=PORT1_VECTOR
+__interrupt void Port_1(void)
+{
+  audio.Button=1; //set the button value to true
+}

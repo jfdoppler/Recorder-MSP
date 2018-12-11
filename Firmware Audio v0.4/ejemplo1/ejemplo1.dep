@@ -10,40 +10,39 @@
       <file>$PROJ_DIR$\bsp\bsp.c</file>
       <file>$PROJ_DIR$\MMC_lib\hal_SPI.c</file>
       <file>$PROJ_DIR$\MMC_lib\mmc.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\mmc.__cstat.et</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\xtgmath.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\mmc.r43</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
-      <file>$PROJ_DIR$\Debug\Exe\ejemplo1.d90</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_SPI.r43</file>
-      <file>$TOOLKIT_DIR$\inc\io430g2553.h</file>
-      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
-      <file>$PROJ_DIR$\Debug\Exe\ejemplo1.d43</file>
-      <file>$PROJ_DIR$\bsp\bsp.h</file>
-      <file>$PROJ_DIR$\Debug\Exe\ejemplo1.ulp</file>
-      <file>$PROJ_DIR$\Debug\List\ejemplo1.map</file>
-      <file>$PROJ_DIR$\Debug\Obj\bsp.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_SPI.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_SPI.__cstat.et</file>
-      <file>$PROJ_DIR$\Debug\Obj\mmc.pbi</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
-      <file>$TOOLKIT_DIR$\inc\io430.h</file>
       <file>$PROJ_DIR$\Debug\Obj\bsp.__cstat.et</file>
       <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
       <file>$PROJ_DIR$\Debug\Obj\ejemplo1.pbd</file>
-      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\bsp.r43</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
-      <file>$PROJ_DIR$\MMC_lib\mmc.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
-      <file>$PROJ_DIR$\MMC_lib\integer.h</file>
-      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
-      <file>$TOOLKIT_DIR$\config\linker\lnk430g2553.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_SPI.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ejemplo1.d43</file>
+      <file>$PROJ_DIR$\bsp\bsp.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\mmc.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\bsp.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\xtgmath.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\mmc.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\Obj\mmc.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_SPI.__cstat.et</file>
+      <file>$PROJ_DIR$\Debug\List\ejemplo1.map</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
       <file>$TOOLKIT_DIR$\inc\dlib\c\ymath.h</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
+      <file>$TOOLKIT_DIR$\inc\io430g2553.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\config\linker\lnk430g2553.xcl</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\MMC_lib\integer.h</file>
+      <file>$TOOLKIT_DIR$\inc\io430.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\ejemplo1.ulp</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_SPI.r43</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\bsp.r43</file>
+      <file>$PROJ_DIR$\MMC_lib\mmc.h</file>
       <file>$PROJ_DIR$\MMC_lib\hal_SPI.h</file>
       <file>$TOOLKIT_DIR$\inc\dlib\c\math.h</file>
     </outputs>
@@ -52,92 +51,11 @@
       <outputs>
         <tool>
           <name>ICC430</name>
-          <file> 20</file>
+          <file> 7</file>
         </tool>
         <tool>
           <name>__cstat</name>
-          <file> 19</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 10</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 25 12 29 15 32 34</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 29 12 25 15 34 32</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\bsp\bsp.c</name>
-      <outputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 30</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
-          <file> 26</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 18</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 15 25 12 29</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 12 25 29 15</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\MMC_lib\hal_SPI.c</name>
-      <outputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 11</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
-          <file> 22</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 21</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 38 25 12 29</file>
-        </tool>
-        <tool>
-          <name>BICOMP</name>
-          <file> 12 25 29 38</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\MMC_lib\mmc.c</name>
-      <outputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 6</file>
-        </tool>
-        <tool>
-          <name>__cstat</name>
-          <file> 4</file>
+          <file> 24</file>
         </tool>
         <tool>
           <name>BICOMP</name>
@@ -147,11 +65,92 @@
       <inputs>
         <tool>
           <name>ICC430</name>
-          <file> 32 34 38 25 12 29 39 7 37 9 35 27 33 24 31 5</file>
+          <file> 29 22 25 11 36 28</file>
         </tool>
         <tool>
           <name>BICOMP</name>
-          <file> 27 9 5 7 24 29 33 38 39 34 25 12 37 35 31 32</file>
+          <file> 11 28 25 36 29 22</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\bsp\bsp.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 35</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 4</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 13</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 11 29 22 25</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 29 25 11</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\MMC_lib\hal_SPI.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 32</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 17</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 37 29 22 25</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 22 29 25 37</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\MMC_lib\mmc.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 16</file>
+        </tool>
+        <tool>
+          <name>__cstat</name>
+          <file> 15</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 36 28 37 29 22 25 38 30 20 9 27 5 33 19 34 14</file>
+        </tool>
+        <tool>
+          <name>BICOMP</name>
+          <file> 5 9 14 30 19 25 33 37 38 28 29 22 20 27 34 36</file>
         </tool>
       </inputs>
     </file>
@@ -160,11 +159,11 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 14 17 8</file>
+          <file> 10 18</file>
         </tool>
         <tool>
           <name>ULP430</name>
-          <file> 16</file>
+          <file> 31</file>
         </tool>
       </outputs>
     </file>
@@ -173,13 +172,13 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 17 8</file>
+          <file> 18</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 36 30 11 20 6 13</file>
+          <file> 26 35 32 7 16 21</file>
         </tool>
       </inputs>
     </file>

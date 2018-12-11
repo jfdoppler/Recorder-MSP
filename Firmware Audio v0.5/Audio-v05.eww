@@ -2,7 +2,7 @@
 
 <workspace>
   <project>
-    <path>$WS_DIR$\..\Firmware Audio v0.4\ejemplo1\ejemplo1.ewp</path>
+    <path>$WS_DIR$\ejemplo1\ejemplo1.ewp</path>
   </project>
   <batchBuild/>
 </workspace>
