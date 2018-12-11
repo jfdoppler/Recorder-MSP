@@ -1,50 +1,41 @@
 ################################################################################
 #                                                                              #
-#      IAR Universal Linker V6.4.3.84                                          #
+#      IAR Universal Linker V6.4.6.89                                          #
 #                                                                              #
-#           Link time     =  05/Sep/2016  15:23:13                             #
+#           Link time     =  11/Dec/2018  13:53:15                             #
 #           Target CPU    =  MSP430                                            #
-#           List file     =  "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\List\ejemplo1.map"                              #
-#           Output file 1 =  "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\Exe\ejemplo1.d43"                               #
+#           List file     =  "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\List\ejemplo1.map"        #
+#           Output file 1 =  "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\Exe\ejemplo1.d43"         #
 #                            Format: ubrof10                                   #
 #                            UBROF version 10.0.6                              #
 #                            Using library modules for C-SPY (-rt)             #
-#           Output file 2 =  "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\Exe\ejemplo1.d90"                               #
+#           Output file 2 =  "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\Exe\ejemplo1.d90"         #
 #                            Format: ubrof8                                    #
 #                            UBROF version 8.0.2                               #
 #                            Using library modules for C-SPY (-rt)             #
-#           Command line  =  "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\Obj\bsp.r43"                                    #
-#                            "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\Obj\hal_SPI.r43"                                #
-#                            "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\Obj\main.r43"                                   #
-#                            "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\Obj\mmc.r43"                                    #
+#           Command line  =  "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\Obj\bsp.r43"              #
+#                            "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\Obj\hal_SPI.r43"          #
+#                            "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\Obj\main.r43"             #
+#                            "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\Obj\mmc.r43"              #
 #                            -o                                                #
-#                            "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\Exe\ejemplo1.d43"                               #
+#                            "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\Exe\ejemplo1.d43"         #
 #                            -l                                                #
-#                            "C:\Users\Juan\Documents\MicroSD\Programas descar #
-#                            gados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debu #
-#                            g\List\ejemplo1.map"                              #
+#                            "C:\Users\Juan\Documents\Recorder-MSP\Firmware Au #
+#                            dio v0.4\ejemplo1\Debug\List\ejemplo1.map"        #
 #                            -xes                                              #
 #                            "-IC:\Program Files (x86)\IAR Systems\Embedded Wo #
-#                            rkbench 7.3\430\LIB\"                             #
+#                            rkbench 7.4\430\LIB\"                             #
 #                            -f                                                #
 #                            "C:\Program Files (x86)\IAR Systems\Embedded Work #
-#                            bench 7.3\430\config\linker\lnk430g2553.xcl"      #
+#                            bench 7.4\430\config\linker\lnk430g2553.xcl"      #
 #                            (-cmsp430 -QCODE_I=CODE_ID -QTLS16_I=TLS16_ID     #
 #                            -Z(CONST)INFO=1000-10FF                           #
 #                            -Z(CONST)INFOA=10C0-10FF                          #
@@ -63,12 +54,12 @@
 #                            -Z(CODE)INTVEC=FFE0-FFFF                          #
 #                            -Z(CODE)RESET=FFFE-FFFF) -D_STACK_SIZE=50 -rt     #
 #                            "C:\Program Files (x86)\IAR Systems\Embedded Work #
-#                            bench 7.3\430\lib\dlib\dl430fn.r43"               #
+#                            bench 7.4\430\lib\dlib\dl430fn.r43"               #
 #                            -e_PrintfLarge=_Printf -e_ScanfLarge=_Scanf       #
 #                            -D_DATA16_HEAP_SIZE=50                            #
-#                            "-Oubrof8=C:\Users\Juan\Documents\MicroSD\Program #
-#                            as descargados 5-09-2016\Firmware Audio v0.4\ejem #
-#                            plo1\Debug\Exe\ejemplo1.d90"                      #
+#                            "-Oubrof8=C:\Users\Juan\Documents\Recorder-MSP\Fi #
+#                            rmware Audio v0.4\ejemplo1\Debug\Exe\ejemplo1.d90 #
+#                            "                                                 #
 #                            -s __program_start -D_DATA20_HEAP_SIZE=50         #
 #                                                                              #
 #                           Copyright (C) 1987-2016 IAR Systems AB.            #
@@ -127,21 +118,21 @@ Module  Entry                         Address
         _DATA20_HEAP_SIZE              0050
         _DATA16_HEAP_SIZE              0050
         _STACK_SIZE                    0050
-bsp ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debug\Obj\bsp.r43 )
+bsp ( C:\Users\Juan\Documents\Recorder-MSP\Firmware Audio v0.4\ejemplo1\Debug\Obj\bsp.r43 )
         _A_DCOCTL                      0056
         _A_BCSCTL1                     0057
         _A_BCSCTL2                     0058
         CALDCO_8MHZ                    10FC
         CALBC1_8MHZ                    10FD
-        MainClockInit                  C846
-        SMCLKInit                      C838
+        MainClockInit                  C868
+        SMCLKInit                      C85A
         DCOCTL                         0056
         DCOCTL_bit                     0056
         BCSCTL1                        0057
         BCSCTL1_bit                    0057
         BCSCTL2                        0058
         BCSCTL2_bit                    0058
-hal_SPI ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debug\Obj\hal_SPI.r43 )
+hal_SPI ( C:\Users\Juan\Documents\Recorder-MSP\Firmware Audio v0.4\ejemplo1\Debug\Obj\hal_SPI.r43 )
         _A_IFG2                        0003
         _A_UCB0CTL0__SPI               0068
         _A_UCB0CTL1__SPI               0069
@@ -149,8 +140,8 @@ hal_SPI ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmwa
         _A_UCB0BR1__SPI                006B
         _A_UCB0RXBUF__SPI              006E
         _A_UCB0TXBUF__SPI              006F
-        halSPISetup                    C7D4
-        spiSendByte                    C7EE
+        halSPISetup                    C7F6
+        spiSendByte                    C810
         IFG2                           0003
         IFG2_bit                       0003
         UCB0CTL0                       0068
@@ -169,7 +160,7 @@ hal_SPI ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmwa
         UCB0RXBUF__SPI                 006E
         UCB0TXBUF                      006F
         UCB0TXBUF__SPI                 006F
-main ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debug\Obj\main.r43 )
+main ( C:\Users\Juan\Documents\Recorder-MSP\Firmware Audio v0.4\ejemplo1\Debug\Obj\main.r43 )
         ADC10AE0                       004A
         _A_ADC10CTL0                   01B0
         _A_ADC10CTL1                   01B2
@@ -187,11 +178,11 @@ main ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmware 
         inicio                         0208
         audio                          0214
         flashDisk                      020A
-        sdWrite                        C362
-        Rec                            C722
+        sdWrite                        C384
+        Rec                            C744
         main                           C02A
-        interrupt_timer                C3F2
-        ADC10_ISR                      C634
+        interrupt_timer                C414
+        ADC10_ISR                      C656
         ADC10_ISR::??INTVEC 10         FFEA
         interrupt_timer::??INTVEC 18   FFF2
         ADC10CTL0                      01B0
@@ -208,24 +199,24 @@ main ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmware 
         TA0CCTL0_bit                   0162
         WDTCTL                         0120
         WDTCTL_bit                     0120
-mmc ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmware Audio v0.4\ejemplo1\Debug\Obj\mmc.r43 )
+mmc ( C:\Users\Juan\Documents\Recorder-MSP\Firmware Audio v0.4\ejemplo1\Debug\Obj\mmc.r43 )
         _A_P1SEL                       0026
         _A_P1SEL2                      0041
         _A_P2OUT                       0029
         _A_P2DIR                       002A
-        dly_100us                      C854
-        disk_initialize                C170
-        initMMC                        C772
-        mmcWriteByte                   C87C
-        mmcSendCmd                     C474
-        mmcGetResponse                 C7B4
-        mmcCheckBusy                   C592
-        mmcSetBlockLength              C5E6
-        mmc_GoIdle                     C4DA
-        mmcGetXXResponse               C750
-        mmcWriteUnmount                C67A
-        mmcWriteMount                  C53C
-        mmcReadUnmount                 C6BC
+        dly_100us                      C876
+        disk_initialize                C192
+        initMMC                        C794
+        mmcWriteByte                   C89E
+        mmcSendCmd                     C496
+        mmcGetResponse                 C7D6
+        mmcCheckBusy                   C5B4
+        mmcSetBlockLength              C608
+        mmc_GoIdle                     C4FC
+        mmcGetXXResponse               C772
+        mmcWriteUnmount                C69C
+        mmcWriteMount                  C55E
+        mmcReadUnmount                 C6DE
         P1OUT                          0021
         P1OUT_bit                      0021
         P1DIR                          0022
@@ -239,54 +230,54 @@ mmc ( C:\Users\Juan\Documents\MicroSD\Programas descargados 5-09-2016\Firmware A
         P2DIR                          002A
         P2DIR_bit                      002A
         CardType                       0376
-        init_spi                       C6F4
-        xmit_spi                       C878
-        rcv_spi                        C86A
-        send_cmd                       C2AA
-?abort ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?__dbg_break ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        __DebugBreak                   C884
-?__dwrite ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?__exit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        __exit                         C816
-?__write ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?_exit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        _exit                          C874
-?cppinit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?cstart ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
+        init_spi                       C716
+        xmit_spi                       C89A
+        rcv_spi                        C88C
+        send_cmd                       C2CC
+?abort ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?__dbg_break ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        __DebugBreak                   C8A6
+?__dwrite ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?__exit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        __exit                         C838
+?__write ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?_exit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        _exit                          C896
+?cppinit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?cstart ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
         __program_start                C002
         ?cstart_begin                  C002
         ?cstart_init_zero              C006
         ?cstart_init_copy              C012
         ?cstart_call_main              C022
         ?cstart_end                    C02A
-lowinit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?reset_vector ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
+lowinit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?reset_vector ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
         ?reset_vector                  FFFE
-?Epilogue ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        ?Epilogue4                     C860
-        ?Epilogue3                     C862
-?exit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        exit                           C880
-?malloc ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?Mul32 ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?ShiftLeft32_8n ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?ShiftRight32u ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        ?ShiftRight32u                 C794
-?memcpy ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        memcpy                         C804
-?memmove ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?memzero ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-        __data16_memzero               C828
-        __data16_memcpy                C870
-?MpuInit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?setjmp ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?longjmp ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?SwitchKey8 ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?xcloseall ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?xgetmemchunk ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?xxmemxfree ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
-?xxmemxmalloc ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3\430\lib\dlib\dl430fn.r43 )
+?Epilogue ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        ?Epilogue4                     C882
+        ?Epilogue3                     C884
+?exit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        exit                           C8A2
+?malloc ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?Mul32 ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?ShiftLeft32_8n ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?ShiftRight32u ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        ?ShiftRight32u                 C7B6
+?memcpy ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        memcpy                         C826
+?memmove ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?memzero ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+        __data16_memzero               C84A
+        __data16_memcpy                C892
+?MpuInit ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?setjmp ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?longjmp ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?SwitchKey8 ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?xcloseall ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?xgetmemchunk ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?xxmemxfree ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
+?xxmemxmalloc ( C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.4\430\lib\dlib\dl430fn.r43 )
 
 
                 ****************************************
@@ -318,7 +309,7 @@ DATA16_AN                              10FC - 10FD               2   rel    0
 DATA16_C                                  C000                       dse    0
 DATA16_ID                              C000 - C000               1   rel    1
 CSTART                                 C002 - C029              28   rel    1
-<CODE> 1                               C02A - C885             85C   rel    1
+<CODE> 1                               C02A - C8A7             87E   rel    1
 INTVEC                                 FFE0 - FFF3              14   com    1
 RESET                                  FFFE - FFFF               2   rel    1
 
@@ -328,7 +319,7 @@ RESET                                  FFFE - FFFF               2   rel    1
                 *                                      *
                 ****************************************
 
- 2 202 bytes of CODE  memory
+ 2 236 bytes of CODE  memory
    454 bytes of DATA  memory (+ 33 absolute )
      1 byte  of CONST memory
 

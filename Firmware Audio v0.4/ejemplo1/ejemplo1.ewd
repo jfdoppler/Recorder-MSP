@@ -153,7 +153,7 @@
       <name>430FET</name>
       <archiveVersion>1</archiveVersion>
       <data>
-        <version>30</version>
+        <version>31</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>1</debug>
         <option>
@@ -199,14 +199,6 @@
         </option>
         <option>
           <name>AllowLockedFlashAccessP7</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>EMUAttach</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>AttachOptionSlave</name>
           <state>0</state>
         </option>
         <option>
@@ -407,10 +399,6 @@
         <loadFlag>0</loadFlag>
       </plugin>
       <plugin>
-        <file>$EW_DIR$\common\plugins\SymList\SymList.ENU.ewplugin</file>
-        <loadFlag>1</loadFlag>
-      </plugin>
-      <plugin>
         <file>$EW_DIR$\common\plugins\uCProbe\uCProbePlugin.ENU.ewplugin</file>
         <loadFlag>0</loadFlag>
       </plugin>
@@ -567,7 +555,7 @@
       <name>430FET</name>
       <archiveVersion>1</archiveVersion>
       <data>
-        <version>30</version>
+        <version>31</version>
         <wantNonLocal>1</wantNonLocal>
         <debug>0</debug>
         <option>
@@ -613,14 +601,6 @@
         </option>
         <option>
           <name>AllowLockedFlashAccessP7</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>EMUAttach</name>
-          <state>0</state>
-        </option>
-        <option>
-          <name>AttachOptionSlave</name>
           <state>0</state>
         </option>
         <option>
@@ -819,10 +799,6 @@
       <plugin>
         <file>$EW_DIR$\common\plugins\Orti\Orti.ENU.ewplugin</file>
         <loadFlag>0</loadFlag>
-      </plugin>
-      <plugin>
-        <file>$EW_DIR$\common\plugins\SymList\SymList.ENU.ewplugin</file>
-        <loadFlag>1</loadFlag>
       </plugin>
       <plugin>
         <file>$EW_DIR$\common\plugins\uCProbe\uCProbePlugin.ENU.ewplugin</file>

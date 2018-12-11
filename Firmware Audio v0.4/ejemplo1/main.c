@@ -28,12 +28,13 @@ VERSION 0.3
 VERSION 0.4
 - Multiples mediciones
 
-TODO:
-- grabar metadata de sectores con error
-- Revisar deteccion de errores
-- definir variables globales: sector size, tiempo a medir, frecuencia ...
-- SECTORES CON ERRORES POR CARGA LENTA
+VERSION 0.5 (falta testear)
+- Para evitar perdida de tiempo en instancias de buffer overflow, escribo 0's
 
+VERSION 0.5b (falta testear)
+- Graba 4 canales
+- 8 bits 20kHz
+- Duplico tamaño buffer! 175 --> 350
 */
 #include "io430.h"
 #include "intrinsics.h"
@@ -43,29 +44,28 @@ TODO:
 // Variables para montar la sd
 unsigned char status = 1;
 unsigned int timeout = 0;
-// Variables para detectar sectores con errores
-int numero = 1;
-int aux;
+
 // Buffer
 int buffer_in = 0; //Index entrada
 int buffer_out = 0; //Index salida
-//int buffer_size = 175; // Tamaño buffer
-#define buffer_size 175 // Tamaño buffer
+#define buffer_size 350 // Tamaño buffer
+
 #define umbral 0 // valor umbral para el trigger
 #define MedirSectores 400 // Cantidad de sectores por medicion
+
 int inicio;
 
 struct audioStr {
   volatile unsigned char msb[buffer_size]; //stores one 8 bit audio output sample
   volatile unsigned char lsb[buffer_size]; //guarda los 2 bits perdidos (10bit ADC -> 8bit audio)
-  unsigned char Rec; //audio record or play?
+  unsigned char Rec;                       //audio record or play?
   unsigned char Trigger; 
-  unsigned char bufferBytes;  //number of audio bytes available
-  unsigned char canal; //selecciona que canal se va a medir
+  unsigned char bufferBytes;               //number of audio bytes available
+  unsigned char canal;                     //selecciona que canal se va a medir
 } audio;
 
 struct flashstr {
-  unsigned int currentByte; //byte counter for current 512byte sector
+  unsigned int currentByte;    //byte counter for current 512byte sector
   unsigned long currentSector; //current sector
   unsigned long sectorInicial; //Sector inicial de la medicion
 } flashDisk;
@@ -79,34 +79,32 @@ unsigned char sdWrite(unsigned char data);
 unsigned char sdWrite(unsigned char data)
 {
   unsigned char status;
-    mmcWriteByte(data);             //write audio sample to the sector
-    flashDisk.currentByte++;        //increment the byte counter
-    if(flashDisk.currentByte==512+1)
-    {                               //we have reached the end of the current sector
-      if(inicio){                       // Si salto el trigger
-        flashDisk.sectorInicial = flashDisk.currentSector; //Guarda en que sector empieza la medicion
-        inicio = 0;
-      }
-      mmcWriteUnmount(flashDisk.currentByte);  //close the sector
-
-      flashDisk.currentByte=1;      //reset byte counter to 1
- 
-      if(flashDisk.currentSector-flashDisk.sectorInicial == 399) //record 150*2 sectors (~10 seconds) of audio
-      {                             //we have reached the end of the file/disk, return EOF code (99)
-        audio.Rec = 0; //Dejo de medir
-        flashDisk.sectorInicial = flashDisk.currentSector; 
-        audio.Trigger = 1; //Vuelvo a medir el trigger
-        audio.canal = 1;
-        audio.bufferBytes = 0;
-        buffer_in = 0; //Vacio el buffer
-        P1OUT_bit.P4 ^= 1;
-      }
-  
-      flashDisk.currentSector++;    //go to the next sector
-      status=mmcWriteMount(flashDisk.currentSector);//mount by byte, not the sector number.... -> MAL
-                                                    // Se monta por sector!
+  mmcWriteByte(data);             //write audio sample to the sector
+  flashDisk.currentByte++;        //increment the byte counter
+  if(flashDisk.currentByte==512+1)
+  {                               //we have reached the end of the current sector
+    if(inicio){                   // Si salto el trigger
+      flashDisk.sectorInicial = flashDisk.currentSector; //Guarda en que sector empieza la medicion
+      inicio = 0;
     }
-    return status;                  //no errors....
+    mmcWriteUnmount(flashDisk.currentByte);  //close the sector
+    flashDisk.currentByte=1;      //reset byte counter to 1
+
+    if(flashDisk.currentSector-flashDisk.sectorInicial == MedirSectores) // TESTEAR
+    {
+      audio.Rec = 0; //Dejo de medir
+      flashDisk.sectorInicial = flashDisk.currentSector; 
+      audio.Trigger = 1; //Vuelvo a medir el trigger
+      audio.canal = 1;
+      audio.bufferBytes = 0;
+      buffer_in = 0; //Vacio el buffer
+      P1OUT_bit.P4 ^= 1;
+    }
+    flashDisk.currentSector++;                     //go to the next sector
+    status=mmcWriteMount(flashDisk.currentSector); //mount by byte, not the sector number.... -> MAL
+                                                   // Se monta por sector!
+  }
+  return status;                  //no errors....
 }
 
 void Rec(){
@@ -115,17 +113,15 @@ void Rec(){
     
     //------write audio to SD card....
     //setup the write
-    audio.bufferBytes=0;        //flush any old values from the buffer
-    audio.Rec=0;                //enable recording code in WDT routine.....
-    audio.Trigger = 1;          // Activa medicion del trigger
+    audio.bufferBytes = 0;        //flush any old values from the buffer
+    audio.Rec = 0;                //enable recording code in WDT routine.....
+    audio.Trigger = 1;            // Activa medicion del trigger
     audio.canal = 1;
-    flashDisk.currentByte=1;    //reading byte 0 of the current 512 byte sector
-     //we start with sector 1 so we can store meta data in sector 0....
-                               // Modificar para escribir en sector posterior al ultimo de la medicion anterior
+    flashDisk.currentByte = 1;      //reading byte 0 of the current 512 byte sector
     
-    status=mmcWriteMount(flashDisk.currentSector); //mount the first sector so it is ready to write, 
-                                                  //now all writes go through sdWrite()
-                                                  // Agregue el +1 porque no estaba cambiando de sector// Lo saque y cambia(?)
+    status = mmcWriteMount(flashDisk.currentSector); //mount the first sector so it is ready to write, 
+                                                     //now all writes go through sdWrite()
+                                                     // Agregue el +1 porque no estaba cambiando de sector// Lo saque y cambia(?)
 }
 
 int main( void )
@@ -167,25 +163,27 @@ int main( void )
   //setup the ADC10
   ADC10CTL0 &= ~ENC;				// Disable Conversion (apagar antes de configurar)
   ADC10CTL0 = SREF_1 + REFON + REF2_5V + ADC10SHT_2 + ADC10ON + ADC10IE; // Rango, sample and hold time, ADC10ON, interrupt enabled
-  ADC10AE0 |= BIT1 + BIT2;                           // PA.1 y A.2 ADC option select (se puede hacer asi?)
+  ADC10AE0 |= BIT1 + BIT2 + BIT3 + BIT4;                           // PA.1, A.2, A.3, A.4 ADC option select
   Rec(); //Prepara la tarjeta sd (monta el primer sector). En esta version no hace audio.Rec = 1, sino audio.Trigger = 1 !!
-  flashDisk.currentSector=0;
+  flashDisk.currentSector = 0;
+  
   // Seteo el timer:
   CCTL0 = CCIE;
   TA0CTL = TASSEL_2 + ID_0 + MC_1; // Clear + Source + Divisor + Modo + Interrupt
-  TACCR0 = 61; // Cuenta hasta TACCR0 + 1 = 62us -> 16kHz
+  TACCR0 = 49; // Cuenta hasta TACCR0 + 1 = 50us -> 20kHz
   
   __enable_interrupt(); //Habilita las interrupciones
 
   while(1){
     if(audio.Rec){ // Si estamos en modo grabar
-      if(audio.bufferBytes>0){   //There is a byte to be written in the record buffer
-        buffer_out = buffer_in-audio.bufferBytes+1;
+      if(audio.bufferBytes > buffer_size){       // Buffer overflow (perdi datos) --> escribo 0's
+        status = sdWrite(0x00);
+        audio.bufferBytes--;
+      }else if(audio.bufferBytes > 0){           //There is a byte to be written in the record buffer
+        buffer_out = buffer_in - audio.bufferBytes + 1;
         if(buffer_out < 0) buffer_out += buffer_size;
-        status=sdWrite(audio.msb[buffer_out]);//write the byte, get the result code in status
-        status=sdWrite(audio.lsb[buffer_out]);//escribo el segundo byte, con los digitos menos significativos
-                               //status=99 when the card is full (or reaches a predetermined limit)
-        audio.bufferBytes--;    //subtract one from the buffer counter
+        status = sdWrite(audio.msb[buffer_out]); //write the byte, get the result code in status
+        audio.bufferBytes--;                     //subtract one from the buffer counter
       }
     }
   }
@@ -200,12 +198,22 @@ __interrupt void interrupt_timer(void)
     if(audio.canal){            //Selecciono 1 de los dos canales
       ADC10CTL0 &= ~ENC;
       ADC10CTL1 &= ~0xFFFF;
-      ADC10CTL1 = CONSEQ_0 + INCH_2;
-      audio.canal = 0;          // Cambio de canal para la proxima
-    }else{
+      ADC10CTL1 = CONSEQ_0 + INCH_1;
+      audio.canal = 2;          // Cambio de canal para la proxima
+    }else if(audio.canal == 2){
       ADC10CTL0 &= ~ENC;
       ADC10CTL1 &= ~0xFFFF;
-      ADC10CTL1 = CONSEQ_0 + INCH_1;
+      ADC10CTL1 = CONSEQ_0 + INCH_2;
+      audio.canal = 3;
+    }else if(audio.canal == 3){
+      ADC10CTL0 &= ~ENC;
+      ADC10CTL1 &= ~0xFFFF;
+      ADC10CTL1 = CONSEQ_0 + INCH_3;
+      audio.canal = 4;
+    }else if(audio.canal == 4){
+      ADC10CTL0 &= ~ENC;
+      ADC10CTL1 &= ~0xFFFF;
+      ADC10CTL1 = CONSEQ_0 + INCH_4;
       audio.canal = 1;
     }
     ADC10CTL0 |= ENC + ADC10SC; //Set bit to start conversion
@@ -213,7 +221,7 @@ __interrupt void interrupt_timer(void)
   }else if(audio.Trigger){
     ADC10CTL0 &= ~ENC;
     ADC10CTL1 &= ~0xFFFF;
-    ADC10CTL1 = CONSEQ_0 + INCH_2; //Selecciono canal para trigger
+    ADC10CTL1 = CONSEQ_0 + INCH_1; //Selecciono canal para trigger
     ADC10CTL0 |= ENC + ADC10SC;
     while (ADC10CTL1 & BUSY);// espero a que se desocupe
 
@@ -236,6 +244,5 @@ __interrupt void ADC10_ISR(void)
   if(buffer_in == buffer_size) buffer_in =  0;
   while (ADC10CTL1 & BUSY);// espero a que se desocupe
   // El ADC10 guarda la medicion de 10 bits en ADC10MEM
-  audio.msb[buffer_in]=(ADC10MEM>>2);       //convert audio to 8 bit sample....  >> binary shift -> mueve los bits 2 lugares
-  audio.lsb[buffer_in]=ADC10MEM & 0x03;
+  audio.msb[buffer_in] = (ADC10MEM>>2);       //convert audio to 8 bit sample....  >> binary shift -> mueve los bits 2 lugares
 }
